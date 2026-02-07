@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <header class="fw-bold" style="font-size: 2.5rem; color: #537fbe;">
+        Portfolio
+        <p></p>
+    </header>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Date</th>
+                <th class="text-end">Symbol</th>
+                <th class="text-end">Shares</th>
+                <th class="text-end">Price Per Share</th>
+                <th class="text-end">Transaction</th>
+                <th class="text-end">Balance</th>
+            </tr>
+        </thead>
+       <tbody>
+            {% for row in hist %}
+                <tr>
+                    <td class="text-start">{{ row.datestamp }}</td>
+                    <td class="text-end">{{ row.symbol }}</td>
+                    <td class="text-end"> {{ row.shares }}
+                    <td class="text-end"> {{ row.price_per_share | usd }} </td>
+                    <td class="text-end"> {{ row.symbol_transaction | usd }} </td>
+                    <td class="text-end"> {{ row.balance | usd }} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

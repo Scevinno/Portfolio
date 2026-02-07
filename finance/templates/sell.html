@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select class="form-select mx-auto w-auto" name="symbol">
+                <option>Symbol</option>
+                {% for row in portfolio %}
+                <option value="{{ row.symbol }}">{{ row.symbol }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="quantity" placeholder="Quantity" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+    {% if quantity %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-middle"> You sold {{ quantity }} shares of {{ name }} totaling {{ price }} </th>
+            </tr>
+        </thead>
+    </table>
+    {% endif %}
+{% endblock %}
